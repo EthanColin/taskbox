@@ -5,13 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateTaskState } from "../lib/store"; // connect to the Redux store and render tasks we are interested in
 
 export default function TaskList() {
-	//     {
-	// 	loading,
-	// 	tasks,
-	// 	onPinTask,
-	// 	onArchivedTask,
-	// }
-
 	// retrieving state from the store
 	const tasks = useSelector(state => {
 		const tasksInOrder = [

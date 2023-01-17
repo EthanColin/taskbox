@@ -53,8 +53,8 @@ export default {
 	decorators: [story => <div style={{ padding: "3em" }}>{story()}</div>],
 	excludeStories: /.*MockedState$/,
 	/**
-	 *  excludeStories is a storybook configuration field that prevents
-	 * our mocked state
+	 * excludeStories is a storybook configuration field that prevents
+	 * our mocked state to be treated as a story
 	 */
 };
 
