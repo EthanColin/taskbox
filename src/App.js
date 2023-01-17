@@ -1,5 +1,7 @@
+import { Provider } from "react-redux";
 import "./App.css";
-import { Page } from "./stories/Page";
+import store from "./lib/store";
+import InboxScreen from "./components/InboxScreen";
 
 function App() {
 	return (
@@ -19,9 +21,9 @@ function App() {
 		// 		</a>
 		// 	</header>
 		// </div>
-		<>
-			<Page />
-		</>
+		<Provider store={store}>
+			<InboxScreen />
+		</Provider>
 	);
 }
 
