@@ -53,6 +53,7 @@ export default function Task({
 	);
 }
 
+// setting data types
 Task.propTypes = {
 	task: PropTypes.shape({
 		id: PropTypes.string.isRequired,
