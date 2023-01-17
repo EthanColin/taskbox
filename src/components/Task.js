@@ -1,10 +1,11 @@
 import React from "react";
-import PropTypes from "prop-types";
+import PropTypes from "prop-types"; // library for defining prop types
 
 export default function Task({
+	// parameters a Task object takes in
 	task: { id, title, state },
-	onArchiveTask,
-	onPinTask,
+	onArchiveTask, // called when a task is checked
+	onPinTask, // called when a task is pinned
 }) {
 	return (
 		<div className={`list-item ${state}`}>
@@ -38,6 +39,7 @@ export default function Task({
 				/>
 			</label>
 
+			{/* archived task does have show the pin button */}
 			{state !== "TASK_ARCHIVED" && (
 				<button
 					className="pin-button"

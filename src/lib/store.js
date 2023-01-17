@@ -4,6 +4,7 @@
  */
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
+// default tasks
 const defaultTasks = [
 	{ id: "1", title: "Something", state: "TASK_INBOX" },
 	{ id: "2", title: "Something more", state: "TASK_INBOX" },

@@ -7,11 +7,13 @@ import { updateTaskState } from "../lib/store"; // connect to the Redux store an
 export default function TaskList() {
 	// retrieving state from the store
 	const tasks = useSelector(state => {
+		// order the tasks prioritizing the pinned tasks
 		const tasksInOrder = [
 			...state.taskbox.tasks.filter(t => t.state === "TASK_PINNED"),
 			...state.taskbox.tasks.filter(t => t.state !== "TASK_PINNED"),
 		];
 
+		// filtering tasks in which the state of inbox and pinned
 		const filteredTasks = tasksInOrder.filter(
 			t => t.state === "TASK_INBOX" || "TASK_PINNED"
 		);
@@ -19,20 +21,22 @@ export default function TaskList() {
 		return filteredTasks;
 	});
 
+	// getting the status
 	const { status } = useSelector(state => state.taskbox);
 
 	const dispatch = useDispatch();
 
+	// dispatching pinned event back to store
 	const pinTask = value => {
-		// dispatching pinned event back to store
 		dispatch(updateTaskState({ id: value, newTaskState: "TASK_PINNED" }));
 	};
 
+	// dispatching archived event back to store
 	const archiveTask = value => {
-		// dispatching archived event back to store
 		dispatch(updateTaskState({ id: value, newTaskState: "TASK_ARCHIVED" }));
 	};
 
+	// creating component for loading state
 	const LoadingRow = (
 		<div className="loading-item">
 			<span className="glow-checkbox" />
@@ -42,6 +46,7 @@ export default function TaskList() {
 		</div>
 	);
 
+	// fires when it is loading
 	if (status === "loading") {
 		return (
 			<div className="list-items" data-testid="loading" key={"loading"}>
@@ -57,6 +62,7 @@ export default function TaskList() {
 		);
 	}
 
+	// fires when there are no tasks
 	if (tasks.length === 0) {
 		return (
 			<div className="list-items" key={"empty"} data-testid="empty">
@@ -69,11 +75,13 @@ export default function TaskList() {
 		);
 	}
 
+	// order the tasks prioritizing task in which the state of "TASK_PINNED"
 	const taskInOrder = [
 		...tasks.filter(t => t.state === "TASK_PINNED"),
 		...tasks.filter(t => t.state !== "TASK_PINNED"),
 	];
 
+	// fires when there are tasks in the task list
 	return (
 		<div className="list-items">
 			{taskInOrder.map(task => (
@@ -81,13 +89,14 @@ export default function TaskList() {
 					key={task.id}
 					task={task}
 					onPinTask={task => pinTask(task)}
-					onArchiveTask={archiveTask(task)}
+					onArchiveTask={task => archiveTask(task)}
 				/>
 			))}
 		</div>
 	);
 }
 
+// defining props data types
 TaskList.propTypes = {
 	loading: PropTypes.bool,
 	tasks: PropTypes.arrayOf(Task.propTypes.task).isRequired,
@@ -95,6 +104,7 @@ TaskList.propTypes = {
 	onArchivedTask: PropTypes.func,
 };
 
+// setting default props
 TaskList.defaultProps = {
 	loading: false,
 };
