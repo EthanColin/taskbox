@@ -10,7 +10,7 @@ jobs:
     # Operating System
     runs-on: ubuntu-latest
     # Job Steps
-    steps: 
+    steps:
       - uses: actions/checkout@v1
       - run: yarn
       # Adds chromatic as a step in the workflow
