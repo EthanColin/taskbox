@@ -8,9 +8,9 @@ module.exports = {
 	addons: [
 		"@storybook/addon-links",
 		"@storybook/addon-essentials",
-		"@storybook/addon-interactions",
+		"@storybook/addon-interactions", // Interaction tests
 		"@storybook/preset-create-react-app",
-		"@storybook/addon-a11y",
+		"@storybook/addon-a11y", // Accessibility tests
 	],
 	framework: "@storybook/react",
 	core: {
